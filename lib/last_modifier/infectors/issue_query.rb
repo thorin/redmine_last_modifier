@@ -1,6 +1,6 @@
 module LastModifier
   module Infectors
-    module Query
+    module IssueQuery
       module ClassMethods; end
   
       module InstanceMethods

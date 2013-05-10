@@ -11,7 +11,7 @@ Redmine::Plugin.register :redmine_last_modifier do
 end
 
 RedmineApp::Application.config.after_initialize do
-  Query.add_available_column(
+  IssueQuery.add_available_column(
     QueryColumn.new(:last_modifier, :sortable => ["#{Issue.table_name}.last_modifier_id"], :groupable => true)
   )
   require_dependency 'last_modifier/infectors'
