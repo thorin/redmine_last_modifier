@@ -3,7 +3,7 @@ class AddIssuesLastModifier < ActiveRecord::Migration
   def self.up
     add_column :issues, :last_modifier_id, :integer
 
-    Issue.all.each do |i| 
+    Issue.all.each do |i|
       i.update_attributes({:last_modifier => (i.journals.blank? ? i.author : i.journals.first(:order=>"#{Journal.table_name}.created_on DESC").user)})
     end
   end
