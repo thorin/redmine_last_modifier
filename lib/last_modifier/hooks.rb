@@ -16,7 +16,9 @@ module LastModifier
       if user != issue.last_modifier
         attrs = {:last_modifier => user}
         issue.assign_attributes attrs, :without_protection => true
-        issue.attributes_before_change['last_modifier_id'] = user.id if issue.attributes_before_change
+        if issue.try(:current_journal).try(:attributes_before_change)
+          issue.current_journal.attributes_before_change['last_modifier_id'] = user.id
+        end
       end
     end
   end
